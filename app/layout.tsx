@@ -1,33 +1,35 @@
-import type { Metadata } from "next";
-import { IBM_Plex_Mono } from "next/font/google";
-import "./globals.css";
+import { type Metadata } from 'next'
+import {
+  ClerkProvider,
 
-const ibmPlexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700",],
-  variable: "--font-ibm-plex-mono",
-  display: "swap"
-});
+} from '@clerk/nextjs'
+import './globals.css'
+
+
 
 export const metadata: Metadata = {
-  title: "Fin Guard",
-  description: "Developed by bunchoo",
-  icons: {
-    icon: "/logo.png",
-  }
-};
+  title: 'FinGuard',
+  description: 'Created By Bimal Pandey',
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
-    <html lang="en" >
-      <body className={`${ibmPlexMono.variable} `}>
+    <ClerkProvider>
+      <html lang="en">
+        <body>
 
-        {children}
-      </body>
-    </html>
-  );
+
+
+
+
+
+          {children}
+        </body>
+      </html>
+    </ClerkProvider >
+  )
 }
