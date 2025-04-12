@@ -1,6 +1,8 @@
 import { type Metadata } from 'next'
 import {
   ClerkProvider,
+  SignOutButton,
+  UserButton,
 
 } from '@clerk/nextjs'
 import './globals.css'
@@ -21,8 +23,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body>
-
-
+          <UserButton />
 
 
 
