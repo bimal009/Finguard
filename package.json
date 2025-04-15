@@ -7,10 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:generate": "drizzle-kit generate --dialect=postgresql --schema=src/schema.ts --out=./drizzle",
-     "db:migrate": "tsx ./src/migrate.ts",
-     "db:seed": "tsx ./src/seed.ts",
-     "db-studio":"drizzle-kit studio"
+    "db:generate": "drizzle-kit generate --dialect=postgresql --schema=./db/schema.ts --out=./drizzle",
+    "db:migrate": "tsx ./scripts/migrate.ts",
+    "db:seed": "tsx ./src/seed.ts",
+    "db-studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@clerk/backend": "^1.27.3",
@@ -20,6 +20,7 @@
     "@neondatabase/serverless": "^1.0.0",
     "@radix-ui/react-dialog": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.0",
+    "@tanstack/react-query": "^5.74.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.41.0",
@@ -42,10 +43,12 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "dotenv": "^16.5.0",
-    "drizzle-kit": "^0.19.1",
+    "drizzle-kit": "^0.30.6",
     "eslint": "^9",
     "eslint-config-next": "15.2.5",
+    "pg": "^8.14.1",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3"
   }
 }

@@ -5,6 +5,7 @@ import {
 
 } from '@clerk/nextjs'
 import './globals.css'
+import Providers from '@/providers/query.provider'
 
 
 
@@ -25,8 +26,9 @@ export default function RootLayout({
 
 
 
-
-          {children}
+          <Providers>
+            {children}
+          </Providers>
         </body>
       </html>
     </ClerkProvider >

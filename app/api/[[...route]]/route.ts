@@ -1,24 +1,23 @@
-import { z } from 'zod'
-import { Hono } from 'hono'
-import { handle } from 'hono/vercel'
-import { zValidator } from '@hono/zod-validator'
-import { clerkMiddleware, getAuth } from '@hono/clerk-auth'
+import { Hono } from 'hono';
+import { handle } from 'hono/vercel';
+import { HTTPException } from 'hono/http-exception'
+import account from './account';
 
-export const runtime = 'edge'
+export const runtime = 'edge';
 
-const app = new Hono().basePath('/api')
-
-// Route: /api/hello
-app.get('/hello', clerkMiddleware(), (c) => {
-  const auth = getAuth(c)
-  if (!auth?.userId) {
-    return c.json({ message: 'Unauthorized access' }, 401)
-  }
-  return c.json({
-    message: 'Hello Next.js!',
-    userId: auth.userId
-  })
+const app = new Hono().basePath('/api');
+app.onError((err,c)=>{
+    if(err instanceof HTTPException){
+        return err.getResponse()
+    }
+    return c.json({error :"internal error"},401)
 })
 
-export const GET = handle(app)
-export const POST = handle(app)
+const routes =app.route('/accounts', account);
+
+// Export handlers for Vercel Edge
+export const GET = handle(app);
+export const POST = handle(app);
+
+// Export type (based on app not route())
+export type AppType = typeof routes;
